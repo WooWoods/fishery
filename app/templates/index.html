@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title%}经济鱼类{% endblock %}
+
+{% block page_content %}
+{{ wtf.quick_form(form) }}
+<div>
+	{% if not found %} 
+	<p>{{ pageinfo }}</p>
+	{% else %}
+	{% include "_records.html" %}
+	{% endif %}
+</div>
+{% endblock %}
+
