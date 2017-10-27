@@ -16,10 +16,10 @@ def index():
             session['pageinfo'] = u"没有你要查找的物种"
         else:
             session['found'] = True
-            pageinfo = dict(fishname=fishdata.fishname, 
-                            latin_name=fishdata.latin_name, 
-                            info=fishdata.info, 
-                            pic_url=fishdata.pic_url)
-            session['pageinfo'] = pageinfo
+            #pageinfo = dict(fishname=fishdata.fishname, 
+            #                latin_name=fishdata.latin_name, 
+            #                info=fishdata.info, 
+            #                pic_url=fishdata.pic_url)
+            session['pageinfo'] = fishdata.json()
         return redirect(url_for('.index'))
     return render_template('index.html', form=form, found=session.get('found', False), pageinfo=session.get('pageinfo',''))
