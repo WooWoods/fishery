@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yangtz Fishery</title>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/css/monokai_sublime.min.css">
+    <link href="/home/woods/Project/yangtz-fishry/app/static/css/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/home/woods/Project/yangtz-fishry/app/static/css/screen.css" />
+    
+
+    <script type="text/javascript">
+    var mytree = [
+    				   {
+    				     text: "Item 1",
+    				     nodes: [
+    				       {
+    				         text: "Item 1-1"
+    				       },
+    				       {
+    				         text:"Item 2",
+    				         href:"http://www.baidu.com",
+    				         selectable:true,
+    				       }    				     
+    				     ]
+    				   }
+    				   ]
+    var a = 5;
+    var b = 6;
+    </script>
+  </head>
+  <body class="home-template">
+  	 <!-- start header -->
+    <header class="main-header" style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)">
+      <div class="container">
+      	<div class="row">
+         	<div class="col-sm-12">
+
+            	<!-- start logo -->
+               <a class="branding" href="http://www.ghostchina.com" title="Ghost 开源博客平台"><img src="http://static.ghostchina.com/image/b/46/4f5566c1f7bc28b3f7ac1fada8abe.png" alt="Ghost 开源博客平台"></a>
+               <!-- end logo -->
+               <h2 class="text-hide">Ghost 是一个简洁、强大的写作平台。你只须专注于用文字表达你的想法就好，其余的事情就让 Ghost 来帮你处理吧。</h2>
+
+               <img src="http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg" alt="Ghost 博客系统" class="hide">
+          	</div>
+         </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <!-- start navigation -->
+    <nav class="main-navigation">
+		<div class="container">
+			<div class="row">
+         	<div class="col-sm-12">
+            	<div class="navbar-header">
+               	<span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
+                  	<span class="sr-only">Toggle navigation</span>
+                  	<i class="fa fa-bars"></i>
+                  </span>
+               </div>
+               <div class="collapse navbar-collapse" id="main-menu">
+               	<ul class="menu">
+        					<li class="nav-current" role="presentation"><a href="/">首页</a></li>
+        					<li role="presentation"><a href="http://wenda.ghostchina.com">论坛</a></li>
+        					<li role="presentation"><a href="/ghost-cheat-sheet/">题库</a></li>
+        					<li role="presentation"><a href="http://docs.ghostchina.com/zh/">登录</a></li>
+        					<li role="presentation"><a href="http://docs.ghostchina.com/zh/">联系我们</a></li>
+        					<li role="presentation"><a href="/about/">关于</a></li>
+						</ul>   
+               </div>
+            </div>
+         </div>
+      </div>
+    </nav>
+    <!-- end navigation -->
+    
+    <section class="content-wrap">
+    	<div class="container">
+      	<div class="row">
+    
+			  <aside class="col-md-4 sidebar">  
+		     <!-- start search form widget -->
+             <div class="widget">
+				   <div class="content community">
+				     <!-- form -->
+				     <form class="bs-example bs-example-form" role="form">
+				       <div class="row">
+				         <div class="md-4">
+                       <div class="input-group">
+                         <input type="text" class="form-control">
+                         <!--
+                         <div class="input-group-btn">
+                           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                             物种名
+                             <span class="caret"></span>                           
+                           </button>                    
+                           <ul class="dropdown-menu pull-right">
+                             <li><a href="#">拉丁名</a>                           
+                           </ul>     
+                         </div>
+                         --> 
+                         <span class="input-group-btn">
+                           <button type="submit" class="btn btn-default">GO</button> 
+                         </span>                  
+                       </div>				         
+				         </div>
+				       </div>
+				     </form>
+					  <p>QQ群：277327792</p>
+					  <p><a href="http://wenda.ghostchina.com/" title="Ghost中文网问答社区" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '问答社区'])"><i class="fa fa-comments"></i> 问答社区</a></p>
+					  <p><a href="http://weibo.com/ghostchinacom" title="Ghost中文网官方微博" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '官方微博'])"><i class="fa fa-weibo"></i> 官方微博</a></p>
+					  
+					  <!-- tree -->
+					  <div id="tree">
+					  <script type="text/javascript">
+					    $('#tree').treeview({
+					      data:mytree,
+					      enableLinks:true,
+					      })
+					  </script>
+					  </div>
+					  <!-- end tree -->
+				   </div>
+			    </div>
+			    <!-- end form widget -->
+			    <!-- start tag cloud widget -->
+			    <div class="widget">
+               <h4 class="title">标签云</h4>
+               <div class="content tag-cloud">
+                <a href="#">经济鱼类</a>
+                <a href="#">鱼类生态学</a>
+               </div>			    
+			    </div>
+			    <!-- end tag cloud widget -->
+		     </aside>
+		     <!-- main section -->
+		     <main class="col-md-8 main-content">
+		       <article id=108 class="post">
+		         <div>
+		           <p>This a a post</p>
+		         </div>
+		       </article>
+		     
+		     </main>
+		   </div>  
+       </div>
+    </section>
+    <!-- end main section-->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span>Copyright &copy; <a href="http://www.ghostchina.com/">Ghost中文网</a></span> | 
+            <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | 
+            <span>京公网安备11010802014853</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+    
+    <script src="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/js/jquery-3.2.1.min.js"></script>
+    <script src="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/js/bootstrap-treeview.js"></script>
+  </body>
+</html>

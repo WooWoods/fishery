@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  {% block head %}
+    <title>Yangtz Fishery</title>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="static/bootstrap-3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="static/css/monokai_sublime.min.css">
+    <link href="static/css/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/screen.css" />
+    
+    <script src="static/bootstrap-3.3.7/js/jquery-3.2.1.min.js"></script>
+    <script src="static/bootstrap-3.3.7/js/bootstrap-treeview.js"></script>
+    <script type="text/javascript">
+    var mytree = [
+    				    {
+    				      text: "鲟形目",
+    				      nodes: [
+    				        {
+    				          text: "鲟科",
+    				          nodes: [
+    				            {
+    				              text: "鲟属",
+    				              nodes: [
+    				                { 
+    				                  text: "中华鲟",
+    				                  href:"#"
+    				                }
+    				              ]
+    				            }
+    				          ]
+    				        },
+    				        {
+    				          text: "长吻鲟科",
+    				          nodes: [
+    				            {
+    				            text:"白鲟属",
+    				            nodes: [
+    				              {
+    				              text:"白鲟",
+    				              href:"#"
+    				              }
+    				            ]
+    				            }
+    				          ]
+    				        }   				     
+    				      ]
+    				     },
+    				     {
+    				       text:"鳗鲡目",
+    				       nodes: [
+    				         {
+    				           text:"鳗鲡科",
+    				           nodes: [
+    				             {
+    				               text:"鳗鲡属",
+    				               nodes: [
+    				                 {
+    				                   text:"鳗鲡",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         }   				       
+    				       ]
+    				     },
+    				     {
+    				       text:"鲤形目",
+    				       nodes:[
+    				         {
+    				           text:"亚口鱼科",
+    				           nodes:[
+    				             {
+    				               text:"胭脂鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"胭脂鱼",
+    				                   href:"#"
+    				                 }    				               
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				         {
+    				           text:"鳅属鳅科",
+    				           nodes:[
+    				             {
+    				               text:"泥鳅属",
+    				               nodes:[
+    				                 {
+    				                   text:"泥鳅",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				         {
+    				           text:"鲤科",
+    				           nodes:[
+    				             {
+    				               text:"鱲属",
+    				               nodes:[
+    				                 {
+    				                   text:"宽鳍鱲",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"青鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"青鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鯮属",
+    				               nodes:[
+    				                 {
+    				                   text:"鯮",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"草鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"草鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"赤眼鳟属",
+    				               nodes:[
+    				                 {
+    				                   text:"赤眼鳟",
+    				                   href:"#",
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鳤属",
+    				               nodes:[
+    				                 {
+    				                   text:"鳤",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鱤属",
+    				               nodes:[
+    				                 {
+    				                   text:"鱤",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"飘鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"飘鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"䱗属",
+    				               nodes:[
+    				                 {
+    				                 text:"䱗",
+    				                 href:"#"
+    				                 },
+    				                 {
+    				                   text:"贝氏䱗",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"半䱗属",
+    				               nodes:[
+    				                 {
+    				                 text:"半䱗",
+    				                 href:"#",
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"原鲌属",
+    				               nodes:[
+    				                 {
+    				                 text:"红鳍原鲌",
+    				                 href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鲌属",
+    				               nodes:[
+    				                 {
+    				                   text:"翘嘴鲌",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"达氏鲌",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"蒙古鲌",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"拟尖头鲌",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             },
+    				             {
+    				               text:"鳊属",
+    				               nodes:[
+    				                 {
+    				                   text:"鳊",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鲂属",
+    				               nodes:[
+    				                 {
+    				                   text:"鲂",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"团头鲂",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             },
+    				             {
+    				               text:"鲴属",
+    				               nodes:[
+    				                 {
+    				                   text:"银鲴",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"黄尾鲴",
+    				                   href:"#",
+    				                 },
+    				                 {
+    				                   text:"细鳞鲴",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             },
+    				             {
+    				               text:"圆吻鲴属",
+    				               nodes:[
+    				                 {
+    				                   text:"圆吻鲴",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鳙属",
+    				               nodes:[
+    				                 {
+    				                   text:"鳙",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鲢属",
+    				               nodes:[
+    				                 {
+    				                   text:"鲢",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"䱻属",
+    				               nodes:[
+    				                 {
+    				                   text:"唇䱻",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"花䱻",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"似刺鳊鮈属",
+    				               nodes:[
+    				                 {
+    				                   text:"似刺鳊鮈",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鳈属",
+    				               nodes:[
+    				                 {
+    				                   text:"华鳈",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"铜鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"铜鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"蛇鮈属",
+    				               nodes:[
+    				                 {
+    				                   text:"长蛇鮈",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"蛇鮈",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鲫属",
+    				               nodes:[
+    				                 {
+    				                   text:"鲫",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"鲤属",
+    				               nodes:[
+    				                 {
+    				                 text:"鲤",
+    				                 href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				       ]
+    				     },
+    				     {
+    				       text:"鲇形目",
+    				       nodes:[
+    				         {
+    				           text:"胡子鲇科",
+    				           nodes:[
+    				             {
+    				               text:"胡子鲇属",
+    				               nodes:[
+    				                 {
+    				                   text:"胡子鲇",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				         {
+    				           text:"鲿科",
+    				           nodes:[
+    				             {
+    				               text:"黄颡鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"黄颡鱼",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"长须黄颡鱼",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"光泽黄颡鱼",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"瓦氏黄颡鱼",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             },
+    				             {
+    				               text:"鮠属",
+    				               nodes:[
+    				                 {
+    				                   text:"长吻鮠",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				           ]
+    				         },
+    				         {
+    				           text:"鲇科",
+    				           nodes:[
+    				             {
+    				               text:"鲇属",
+    				               nodes:[
+    				                 {
+    				                   text:"鲇",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         }
+    				       ]
+    				     },
+    				     {
+    				       text:"胡瓜鱼目",
+    				       nodes:[
+    				         {
+    				           text:"银鱼科",
+    				           nodes:[
+    				             {
+    				               text:"大银鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"大银鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             },
+    				             {
+    				               text:"新银鱼属",
+    				               nodes:[
+    				                 {
+    				                   text:"太湖新银鱼",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         }  
+    				       ]
+    				     },
+    				     {
+    				       text:"鲈形目",
+    				       nodes:[
+    				         {
+    				           text:"鳜科",
+    				           nodes:[
+    				             {
+    				               text:"鳜属",
+    				               nodes:[
+    				                 {
+    				                   text:"鳜",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"大眼鳜",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"斑鳜",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             }
+    				           ]
+    				         }
+    				       ]
+    				     },
+    				     {
+    				       text:"鲱形目",
+    				       nodes:[
+    				         {
+    				           text:"鳢科",
+    				           nodes:[
+    				             {
+    				               text:"鳢属",
+    				               nodes:[
+    				                 {
+    				                   text:"乌鳢",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				         {
+    				           text:"鯷科",
+    				           nodes:[
+    				             {
+    				               text:"鲚属",
+    				               nodes:[
+    				                 {
+    				                   text:"刀鲚",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"短颌鲚",
+    				                   href:"#"
+    				                 },
+    				                 {
+    				                   text:"凤鲚",
+    				                   href:"#"
+    				                 },
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				         {
+    				           text:"鲥科",
+    				           nodes:[
+    				             {
+    				               text:"鲥属",
+    				               nodes:[
+    				                 {
+    				                   text:"鲥",
+    				                   href:"#"
+    				                 }
+    				               ]
+    				             }
+    				           ]
+    				         },
+    				       ]
+    				     },
+    				   ]
+    </script>
+    {% endblock head %}
+  </head>
+  <body class="home-template">
+  	 <!-- start header -->
+  	 {% block header %}
+    <header class="main-header" style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)">
+      <div class="container">
+      	<div class="row">
+         	<div class="col-sm-12">
+
+            	<!-- start logo -->
+               <a class="branding" href="http://www.ghostchina.com" title="Ghost 开源博客平台"><img src="http://static.ghostchina.com/image/b/46/4f5566c1f7bc28b3f7ac1fada8abe.png" alt="Ghost 开源博客平台"></a>
+               <!-- end logo -->
+               <h2 class="text-hide">Ghost 是一个简洁、强大的写作平台。你只须专注于用文字表达你的想法就好，其余的事情就让 Ghost 来帮你处理吧。</h2>
+
+               <img src="http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg" alt="Ghost 博客系统" class="hide">
+          	</div>
+         </div>
+      </div>
+    </header>
+    {%- endblock header %}
+    <!-- end header -->
+
+    {% block navbar -%}
+    <!-- start navigation -->
+    <nav class="main-navigation">
+		<div class="container">
+			<div class="row">
+         	<div class="col-sm-12">
+            	<div class="navbar-header">
+               	<span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
+                  	<span class="sr-only">Toggle navigation</span>
+                  	<i class="fa fa-bars"></i>
+                  </span>
+               </div>
+               <div class="collapse navbar-collapse" id="main-menu">
+                  {% block navmenu -%}
+               	<ul class="menu">
+        					<li class="nav-current" role="presentation"><a href="{{ url_for('main.index') }}">首页</a></li>
+        					<li role="presentation"><a href="{{ url_for('main.bbs') }}">论坛</a></li>
+        					<li role="presentation"><a href="{{ url_for('main.exercises') }}">题库</a></li>
+        					{% if current_user.is_authenticated %}
+        					<li role="presentation"><a href="{{ url_for('main.user', username=current_user.username) }}">我的</a></li>
+                     {% else %} 
+        					<li role="presentation"><a href="{{ url_for('auth.login') }}">登录</a></li>
+        					{% endif %}
+        					<li role="presentation"><a href="url_for('main.contact_us') }}">联系我们</a></li>
+        					<li role="presentation"><a href="{{ url_for('main.about') }}">关于</a></li>
+						</ul>
+						{%- endblock navmenu %}   
+               </div>
+            </div>
+         </div>
+      </div>
+    </nav>
+    <!-- end navigation -->
+    {%- endblock navbar %}
+    
+    {% block page_content %}
+    <section class="content-wrap">
+    	<div class="container">
+      	<div class="row">
+           {% block aside %}
+			  <aside class="col-md-4 sidebar">  
+		     <!-- start search form widget -->
+             <div class="widget">
+				   <div class="content community">
+				     <!-- form -->
+				     <form class="bs-example bs-example-form" role="form" method="post">
+				       <div class="row">
+				         <div class="md-6">
+				           <p><small>请输入物种名或拉丁名进行搜索</small></p>
+                       <div class="input-group">
+                       {{ form.hidden_tag() }}
+                       {{ form.fishname(class="form-control", placeholder="银鲴") }}
+                       {{ form.submit(class="btn btn-default") }}                       
+                       </div>
+                       
+				         </div>
+				       </div>
+				     </form>
+                 <br>
+					  <!-- tree -->
+					  <p>按生物分类系统查看：</p>
+					  <div id="tree">
+					  <script type="text/javascript">
+					    $('#tree').treeview({
+					      data:mytree,
+					      enableLinks:true,
+					      levels:1,
+					      })
+					  </script>
+					  </div>
+					  <!-- end tree -->
+				   </div>
+			    </div>
+			    <!-- end form widget -->
+			    <!-- start tag cloud widget -->
+			    <div class="widget">
+               <h4 class="title">标签云</h4>
+               <div class="content tag-cloud">
+                <a href="#">经济鱼类</a>
+                <a href="#">鱼类生态学</a>
+               </div>			    
+			    </div>
+			    <!-- end tag cloud widget -->
+		     </aside>
+		     {% endblock aside %}
+		     <!-- main section -->
+		     
+		     <main class="col-md-8 main-content">
+		       {% block main %}
+		       <article id=108 class="post">
+		         <div>
+		           <p>This a a post</p>
+		         </div>
+		       </article>
+		       {% endblock main %}
+		     </main>
+
+		   </div>  
+       </div>
+    </section>
+    {%- endblock page_content %}
+    <!-- end main section-->
+    <!-- footer -->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span>Copyright &copy; <a href="http://www.ghostchina.com/">Ghost中文网</a></span> | 
+            <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | 
+            <span>京公网安备11010802014853</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+    {% block scripts -%}
+    {%- endblock scripts %}
+  </body>
+</html>

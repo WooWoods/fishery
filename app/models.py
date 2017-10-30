@@ -11,13 +11,41 @@ from . import db
 from . import login_manager
 
 
+class Team(db.Model):
+    __tablename__ = 'teams'
+    id = db.Column(db.Integer, primary_key=True)
+    captain = db.Column(db.String(64), unique=True, index=True)
+    members = db.Column(db.PickleType)
+
+    def is_captain(self, user):
+        return user.name == self.captain
+
+
+class TeamWork(db.Model):
+    __tablename__ = 'teamworks'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, unique=True)
+
+
+class Exercises(db.Model):
+    __tablename__ = 'exercise'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, unique=True)
+    answered = db.Column(db.Boolean, default=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+exerciseTaken = db.Table('exerciseTaken',
+        db.Column('student_id', db.Integer, db.ForeignKey('users.id')),
+        db.Column('class_id', db.Integer, db.ForeignKey('exercise.id')))
+
+
 class Fishes(db.Model):
     __tablename__ = 'fishes'
     id = db.Column(db.Integer, primary_key=True)
-    fishname = db.Column(db.String(64))
-    latin_name = db.Column(db.String(64))
+    fishname = db.Column(db.String(64), unique=True, index=True)
+    latin_name = db.Column(db.String(64), unique=True, index=True)
     info = db.Column(db.Text)
-    pic_url = db.Column(db.Text)
+    pic_url = db.Column(db.Text, unique=True)
 
     def json(self):
         return dict(fishname=self.fishname,
@@ -29,10 +57,15 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
-    username = db.Column(db.String(64))
+    username = db.Column(db.String(64), unique=True)
+    student_id = db.Column(db.Integer, nullable=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    exercises = db.relationship('Exercises',
+                                secondary=exerciseTaken,
+                                backref=db.backref('users', lazy='dynamic'),
+                                lazy='dynamic')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
