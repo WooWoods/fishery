@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Yangtz Fishery</title>
+    <title>{% block title %}{% endblock title %}</title>
+    <!--title>Yangtz Fishery</title-->
     <meta charset="utf-8"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/css/monokai_sublime.min.css">
-    <link href="/home/woods/Project/yangtz-fishry/app/static/css/magnific-popup.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/home/woods/Project/yangtz-fishry/app/static/css/screen.css" />
-    <link rel="stylesheet" href="/home/woods/Project/yangtz-fishry/app/static/css/sign.css">
-    <script src="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/js/jquery-3.2.1.min.js"></script>
-    <script src="/home/woods/Project/yangtz-fishry/app/static/bootstrap-3.3.7/js/bootstrap-treeview.js"></script>
-   
-    <!-- load mytree -->
-    <script src="static/js/mytree.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/monokai_sublime.min.css') }}">
+    <link href="{{ url_for('static', filename='css/magnific-popup.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/screen.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sign.css') }}">
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7/js/bootstrap-treeview.js') }}"></script>
+
   </head>
   <body class="no-padding">
       <header class="main-header">
@@ -38,14 +37,15 @@
       <div class="main">
         <h4 class="title">
           <div class="normal-title">
-            <span>登录</span>
+            <span>{% block funcname %}{% endblock funcname %}</span>
+            <!--span>登录</span-->
           </div>        
         </h4>      
       
         <div class="js-sign-in-container">
           <form id="new_session" method="post">
-            <div class="input-prepend">
-              <span class="glyphicon glyphicon-user"></span>
+            {% block form %}
+            <!--div class="input-prepend">
               <input placeholder="phone" type="text" id="session_email_or_mobile_number" />
             </div>
             <div class="input-prepend">
@@ -57,7 +57,8 @@
             <div class="forget-btn">
               <a href="#">忘记密码？</a>
             </div>
-            <input type="submit" name="commit" class="sign-in-button" value="登录" />
+            <input type="submit" name="commit" class="sign-in-button" value="登录" /-->
+            {% endblock %}
           </form>
         </div>
       </div>

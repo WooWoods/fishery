@@ -1,0 +1,22 @@
+{% extends "auth/login_base.html" %}
+
+{% block title %}Yangtz Fishery Sign in{% endblock %}
+
+{% block funcname %}登录{% endblock %}
+
+{% block form %}
+  {{ form.hidden_tag() }}
+  <div class="input-prepend">
+    {{ form.email(id="session_email_or_mobile_number", placeholder="用户名或邮箱") }}
+  </div>
+  <div class="input-prepend">
+    {{ form.password(id="session_password", placeholder="密码") }}
+  </div>
+  <div class="remember-btn">
+    {{ form.remember_me(id="session_remember_me", checked="checked") }}<span>记住我</span>
+  </div>
+  <div class="forget-btn">
+    <a href="#">忘记密码？</a>
+  </div>
+    {{ form.submit(class="sign-in-button", value="登录") }}
+{% endblock %}
