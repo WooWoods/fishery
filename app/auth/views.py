@@ -9,7 +9,9 @@ from .forms import LoginForm, RegistrationForm
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    print 'before login'
     if form.validate_on_submit():
+        print 'login=========='
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
