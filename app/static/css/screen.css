@@ -879,3 +879,125 @@ pre {
   height: 30px;
   line-height: 30px;
 }
+
+/* search result page */
+p.introduction {
+  text-indent: 40px;
+}
+
+div.taxon {
+	margin: 20px 5px;
+}
+div.taxon li {
+	list-style-type: none;
+	border-bottom: 1px;
+	border-bottom-color: grey;
+	border-bottom-style: dashed;
+	padding: 3px 0;
+	margin: 2px 0;
+	height: 20px;
+}
+div.taxon li .title {
+	text-align: left;
+	color: grey;
+	display: inline-block;
+	height: 100%;
+	width: 20%;
+	padding-right: 10px;
+	float: left;
+}
+div.taxon li .content {
+	text-align: left;
+	display: inline-block;
+	height: 100%;
+	width: 80%;
+	float: left;
+}
+
+div.record-catalog {
+	height: 65px;
+	border-top: 1px;
+	border-bottom: 1px;
+	border-color: grey;
+	padding: 10px 0;
+	margin: 5px 0;
+}
+div.record-catalog .block-title {
+	text-align: center;
+	vertical-align:middle;
+	border-right: 1px;
+	border-right-color: grey;
+	height: 100%;
+	width: 60px;
+	float: left;
+	font-size: 25px;
+	font-weight: 400;
+	margin: 10px 20px;
+}
+div.record-catalog .catalog-list {
+	display: inline-block;
+	float: left;
+	padding: 5px 0;
+	overflow: hidden;
+	height: 100%;
+	position: relative;
+}
+div.record-catalog .catalog-list ol {
+	float: left;
+	border-left: 1px solid grey;
+}
+div.record-catalog .catalog-list ol li.level1 {
+	line-height: 20px;
+}
+div.record-catalog .catalog-list ol li.level1 .index {
+	display: inline-block;
+	width: 15px;
+	font-size: 15px;
+	padding-left: 15px;
+	padding-right: 8px;
+	text-align: left;
+	color: #63a0df;
+}
+div.record-catalog .catalog-list ol li.level1 .text {
+	display: inline-block;
+	width: 100px;
+	font-size: 15px;
+	font-weight: 500;
+	padding-right: 8px;
+	text-align: left;
+	color: #63a0df;
+}
+
+/* 跳转 */
+.anchor-list {
+	position: relative;
+}
+.anchor-list .lamma-anchor {
+	position: absolute;
+	top: -50px;
+}
+
+.para-title-level2 {
+	display: block;
+	clear: both;
+	zoom: 1;
+	overflow: hidden;
+	border-left: 12px solid #4F9CEE;
+	line-height: 24px;
+	font-size: 22px;
+	font-weight: 400;
+	margin: 30px 0 15px -10px;
+}
+.para-title-level2 .title-text {
+	float: left;
+	display: block;
+	padding: 0 10px 0 18px;
+	line-height: 24px;
+	font-size: 22px;
+	font-weight: 400;
+	color: #000;
+	
+}
+
+
+
