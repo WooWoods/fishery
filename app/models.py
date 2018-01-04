@@ -44,14 +44,16 @@ class Fishes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fishname = db.Column(db.String(64), unique=True, index=True)
     latin_name = db.Column(db.String(64), unique=True, index=True)
-    info = db.Column(db.Text)
+    other_names = db.Column(db.Text)
+    order = db.Column(db.String(64)
+    family = db.Column(db.String(64)
+    genus = db.Column(db.String(64)
+    introduction = db.Column(db.Text)
+    feature = db.Column(db.Text)
+    habit = db.Column(db.Text)
+    distribution = db.Column(db.Text)
+    level = db.Column(db.Text)
     pic_url = db.Column(db.Text, unique=True)
-
-    def json(self):
-        return dict(fishname=self.fishname,
-                    latin_name=self.latin_name,
-                    info=self.info,
-                    pic_url=self.pic_url)
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'

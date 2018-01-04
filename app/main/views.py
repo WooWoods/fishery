@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from .. import db
 from ..models import Fishes
 from . import main
-from .forms import SearchForm
+from .forms import SearchForm, NewRecordForm
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -43,12 +43,39 @@ def edit_profile():
     form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', form=form)
 
+@main.route('/edit-record', methods=['GET', 'POST'])
+@login_required
+def edit_record():
+    form = 
+
+@main.route('/new-record', methods=['GET', 'POST'])
+@login_required
+def new_record():
+    form = NewRecordForm()
+    if form.validate_on_submit():
+        newfish = Fishes(fishname=form.fishname.data,
+                         latin_name = form.latin_name.data,
+                         other_names = form.other_names.data,
+                         order = form.order.data,
+                         family = form.family.data,
+                         genus = form.genus.data,
+                         introdut = form.introdution.data,
+                         feature = form.body_feature.data,
+                         habit = form.life_habit.data,
+                         distribution = form.distribution.data,
+                         level = form.level.data,
+                         )
+        db.session.add(newfish)
+        flash('New record added successfully')
+        return redirect(url_for('.user_profile')
+    return render_template('add_record.html', form=form)
+
 @main.route('/bbs')
 def bbs():
     return
 
 @main.route('/user/<username>')
-def user(username):
+def user_profile(username):
     return
 
 @main.route('/about')

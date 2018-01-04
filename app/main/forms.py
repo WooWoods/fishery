@@ -14,3 +14,18 @@ class EditProfileForm(FlaskForm):
     location = StringField('Location', validators=[Length(0, 64)])
     about_me = TextAreaField('About me')
     submit = SubmitField('Submit')
+
+class NewRecordForm(FlaskForm):
+    fishname = StringField(validators=[Required()])
+    introduction = TextAreaField('introduction')
+    latin_name = StringField('latin name')
+    other_names = StringField('other names')
+    order = StringField('order')
+    family = StringField('family')
+    genus = StringField('genus')
+    body_feature = TextAreaField('body feature')
+    life_habit = TextAreaField('life habit')
+    distribution = TextAreaField('distribution')
+    level = TextAreaField('level')
+    submit = SubmitField('submit')
+
