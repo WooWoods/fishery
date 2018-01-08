@@ -1,39 +1,48 @@
+{% extends "index_base.html" %}
+
+{% block title %}Fishery - 搜索结果{% endblock %}
+
+{% block main %}
 <h2>胭脂鱼</h2>
 {% if current_user.is_administer %}
-	{{ 编辑 }}
+  <button type="button" class="btn btn-default btn-sm">
+    <a href="{{ url_for('main.edit-record', fishname=fishdata.get('fishname') }}">
+      编辑
+    </a>
+  </button>
 {% endif %}
 <p class="introduction">
-	test test test test test;
+	{{ fishdata.get('introduction', '') }}
 </p>
 
 <div class="taxon">
 	<li>
 		<span class="title">中文学名</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('fishname', '') }}</span>
 	</li>
 	<li>
 		<span class="title">拉丁学名</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('latin_name', '') }}</span>
 	</li>
 	<li>
 		<span class="title">别称</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('other_names', '') }}</span>
 	</li>
 	<li>
 		<span class="title">目</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('order', '') }}</span>
 	</li>
 	<li>
 		<span class="title">科</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('family', '') }}</span>
 	</li>
 	<li>
 		<span class="title">属</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('genus', '') }}</span>
 	</li>
 	<li>
 		<span class="title">种</span>
-		<span class="content">胭脂鱼</span>
+		<span class="content">{{ fishdata.get('species', '') }}</span>
 	</li>
 </div>
 
@@ -73,12 +82,6 @@
 					<a href="#5">人工养殖</a>
 				</span>
 			</li>
-						<li class="level1">
-				<span class="index">3</span>
-				<span class="text">
-					<a href="#3">地理分布</a>
-				</span>
-			</li>
 		</ol>
 	</div>
 </div>
@@ -86,13 +89,13 @@
 <!-- 跳转 -->
 <div class="anchor-list">
 	<a name="1" class="lamma-anchor"></a>
-	<a name="形态特征" class="lamma-anchor"></a>
+	<a name="外形特征" class="lamma-anchor"></a>
 </div>
 <div class="para-title-level2">
-	<h2 class="title-text">形态特征</h2>
+	<h2 class="title-text">外形特征</h2>
 </div>
 <div class="para">
-	{{ para }}
+	{{ fishdata.get('feature', '') }}
 </div>
 
 <div class="anchor-list">
@@ -103,34 +106,34 @@
 	<h2 class="title-text">生活习性</h2>
 </div>
 <div class="para">
-	{{ para }}
+	{{ fishdata.get('habit', '') }}
 </div>
 
 <div class="anchor-list">
-	<a name="2" class="lamma-anchor"></a>
-	<a name="生活习性" class="lamma-anchor"></a>
+	<a name="3" class="lamma-anchor"></a>
+	<a name="地理分布" class="lamma-anchor"></a>
 </div>
 <div class="para-title-level2">
 	<h2 class="title-text">地理分布</h2>
 </div>
 <div class="para">
-	{{ para }}
+	{{ fishdata.get('distribution', '') }}
 </div>
 
 <div class="anchor-list">
-	<a name="2" class="lamma-anchor"></a>
-	<a name="生活习性" class="lamma-anchor"></a>
+	<a name="4" class="lamma-anchor"></a>
+	<a name="保护级别" class="lamma-anchor"></a>
 </div>
 <div class="para-title-level2">
 	<h2 class="title-text">保护级别</h2>
 </div>
 <div class="para">
-	{{ para }}
+	{{ fishdata.get('level', '') }}
 </div>
 
 <div class="anchor-list">
-	<a name="2" class="lamma-anchor"></a>
-	<a name="生活习性" class="lamma-anchor"></a>
+	<a name="5" class="lamma-anchor"></a>
+	<a name="人工养殖" class="lamma-anchor"></a>
 </div>
 <div class="para-title-level2">
 	<h2 class="title-text">人工养殖</h2>
@@ -138,8 +141,7 @@
 <div class="para">
 	{{ para }}
 </div>
-
-
+{% endblock %}
 
 
 

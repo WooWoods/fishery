@@ -24,13 +24,13 @@ class Team(db.Model):
 class TeamWork(db.Model):
     __tablename__ = 'teamworks'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text, unique=True)
+    title = db.Column(db.Text)
 
 
 class Exercises(db.Model):
     __tablename__ = 'exercise'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text, unique=True)
+    title = db.Column(db.Text)
     answered = db.Column(db.Boolean, default=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
@@ -45,15 +45,30 @@ class Fishes(db.Model):
     fishname = db.Column(db.String(64), unique=True, index=True)
     latin_name = db.Column(db.String(64), unique=True, index=True)
     other_names = db.Column(db.Text)
-    order = db.Column(db.String(64)
-    family = db.Column(db.String(64)
-    genus = db.Column(db.String(64)
+    order = db.Column(db.String(64))
+    family = db.Column(db.String(64))
+    genus = db.Column(db.String(64))
     introduction = db.Column(db.Text)
     feature = db.Column(db.Text)
     habit = db.Column(db.Text)
     distribution = db.Column(db.Text)
     level = db.Column(db.Text)
-    pic_url = db.Column(db.Text, unique=True)
+    pic_url = db.Column(db.Text)
+
+    def to_frontend(self):
+        return dict(fishname=self.fishname,
+		    latin_name=self.latin_name,
+		    other_names=self.other_names,
+		    order=self.order,
+		    family=self.family,
+		    genus=self.genus,
+		    introduction=self.introduction,
+		    feature=self.feature,
+		    habit=self.habit,
+		    distribution=self.distribution,
+		    level=self.level,
+		    pic_url=self.pic_url,
+		    )
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -72,7 +87,7 @@ class User(UserMixin, db.Model):
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if self.role is None:
-            if self.email == current_app.config['FLASKY_ADMIN']:
+            if self.email == current_app.config['FISHERY_ADMIN']:
                 self.role = Role.query.filter_by(permissions=0xff).first()
             self.role = Role.query.filter_by(default=True).first()
 
