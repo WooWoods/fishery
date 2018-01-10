@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, session, redirect, url_for, current_app, jsonify
+from flask import render_template, session, redirect, url_for, current_app, jsonify, flash
 from flask_login import login_required, current_user
 from .. import db
 from ..models import Fishes
@@ -13,12 +13,12 @@ def index():
     if form.validate_on_submit():
         fishdata = Fishes.query.filter_by(fishname=form.fishname.data).first()
         if fishdata is None:
-            session['found'] = False
-            session['pageinfo'] = u"没有你要查找的物种"
+            flash(u'没有你查找的物种')
+            return render_template('index_base.html', form=form)
         else:
             session['found'] = True
             fishdata_to_front = fishdata.to_frontend()
-        return render_template('searched_record.html', form=form, fishdata=fishdata_to_front)
+            return render_template('searched_record.html', form=form, fishdata=fishdata_to_front)
     else:
         print form.errors
     return render_template('index_base.html', form=form)

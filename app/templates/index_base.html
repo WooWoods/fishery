@@ -166,11 +166,17 @@
 		     <!-- main section -->
 		     
 		     <main class="col-md-8 main-content">
-		       {% block main %}
 		       <article id=108 class="post">
-		         <div>
+		       {% block main %}
+                 {% for message in get_flashed_messages() %}
+                 <div class="alert alert-warning">
+                   <button type="button" class="close" data-dismiss="alert">&times;</button>
+                   {{ message }}
+                 </div>
+                 {% endfor %}
+		         <!--div>
 		           <p>This a a post</p>
-		         </div>
+		         </div-->
 		       </article>
 		       {% endblock main %}
 		     </main>
@@ -185,7 +191,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <span>Copyright &copy; <a href="http://www.ghostchina.com/">Ghost中文网</a></span>
+            <span>Copyright &copy; <a href="{{ url_for('main.index') }}">Yangtz Fishery</a></span>
             <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span>
             <span>京公网安备11010802014853</span>
           </div>
