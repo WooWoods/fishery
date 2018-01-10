@@ -87,11 +87,14 @@
         					      <li role="presentation">
         					        <a href="#">我的习题</a>
         					      </li>
-        					      {% if current_user.is_administer %}
+        					      {% if current_user.is_administrator() %}
         					      	<li role="presentation">
-        					      		<a href="">添加新记录</a>
+        					      		<a href="{{ url_for('main.new_record') }}">添加新记录</a>
         					      	</li>
         					      {% endif %}
+        					      <li role="presentation">
+        					        <a href="{{ url_for('auth.logout') }}">退出</a>
+        					      </li>
         					    </ul>
         					  </div>
         					</li>

@@ -19,6 +19,8 @@ def index():
             session['found'] = True
             fishdata_to_front = fishdata.to_frontend()
         return render_template('searched_record.html', form=form, fishdata=fishdata_to_front)
+    else:
+        print form.errors
     return render_template('index_base.html', form=form)
 
 @main.route('/edit-profile', methods=['GET', 'POST'])
