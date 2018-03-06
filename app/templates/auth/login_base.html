@@ -24,7 +24,7 @@
          	<div class="col-sm-12">
 
             	<!-- start logo -->
-               <a class="branding" href="{{ url_for('main.index') }}" title="经济鱼类数据库"><img src="http://static.ghostchina.com/image/b/46/4f5566c1f7bc28b3f7ac1fada8abe.png" alt="Ghost 开源博客平台"></a>
+               <a class="branding" href="{{ url_for('main.index') }}" title="经济鱼类数据库"><img src="{{ url_for('static', filename='image/logo.png') }}" alt="Ghost 开源博客平台"></a>
                <!-- end logo -->
                
           	</div>
@@ -43,7 +43,14 @@
         </h4>      
       
         <div class="js-sign-in-container">
-          <form id="new_session" method="post">
+            {% for message in get_flashed_messages() %}
+              <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+              </div>
+            {% endfor %}
+
+            <form id="new_session" method="post">
             {% block form %}
             <!--div class="input-prepend">
               <input placeholder="phone" type="text" id="session_email_or_mobile_number" />

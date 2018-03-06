@@ -1003,6 +1003,31 @@ div.record-catalog .catalog-list ol li.level1 .text {
 	margin-bottom: 15px;
 }
 
+.side-bar {
+    padding: 2px 2px;
+    border-bottom: 1px solid grey;
+}
+
+.img-rounded-rd {
+  border-radius: @border-radius-small;
+}
+
+// Image thumbnails
+//
+// Heads up! This is mixin-ed into thumbnails.less for `.thumbnail`.
+.img-thumbnail-rd {
+  padding: @thumbnail-padding;
+  line-height: @line-height-base;
+  background-color: @thumbnail-bg;
+  border: 1px solid @thumbnail-border;
+  border-radius: @thumbnail-border-radius;
+  .transition(all .2s ease-in-out);
+
+  // Keep them at most 100% wide
+  .img-responsive(inline-block);
+}
+
+
 
 
 

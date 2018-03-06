@@ -1,0 +1,20 @@
+{% extends "profile_base.html" %}
+
+{% block title %}Fishery - {{ current_user.username }}{% endblock %}
+
+{% block main %}
+<article id=108 class="post">
+	<div class="page-header">
+	    <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
+	    <div class="profile-header">
+	        <h1>{{ user.username }}</h1>
+	        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+	    </div>
+	    <p>
+            {% if user == current_user %}
+            <a class="btn btn-default" href="{{ url_for('main.edit_profile') }}">编辑</a>
+            {% endif %}
+        </p>
+	</div>
+</article>
+{% endblock %}

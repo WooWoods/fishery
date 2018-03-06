@@ -5,10 +5,13 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 from markdown import markdown
 import bleach
+import hashlib
 from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
 from . import db
 from . import login_manager
+
+
 
 
 class Team(db.Model):
@@ -57,28 +60,31 @@ class Fishes(db.Model):
 
     def to_frontend(self):
         return dict(fishname=self.fishname,
-		    latin_name=self.latin_name,
-		    other_names=self.other_names,
-		    order=self.order,
-		    family=self.family,
-		    genus=self.genus,
-		    introduction=self.introduction,
-		    feature=self.feature,
-		    habit=self.habit,
-		    distribution=self.distribution,
-		    level=self.level,
-		    pic_url=self.pic_url,
-		    )
+                    latin_name=self.latin_name,
+                    other_names=self.other_names,
+                    order=self.order,
+                    family=self.family,
+                    genus=self.genus,
+                    introduction=self.introduction,
+                    feature=self.feature,
+                    habit=self.habit,
+                    distribution=self.distribution,
+                    level=self.level,
+                    pic_url=self.pic_url,
+                    )
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
+    about_me = db.Column(db.Text)
+    avatar_hash = db.Column(db.String(32))
     username = db.Column(db.String(64), unique=True)
     student_id = db.Column(db.Integer, nullable=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
     exercises = db.relationship('Exercises',
                                 secondary=exerciseTaken,
                                 backref=db.backref('users', lazy='dynamic'),
@@ -90,6 +96,38 @@ class User(UserMixin, db.Model):
             if self.email == current_app.config['FISHERY_ADMIN']:
                 self.role = Role.query.filter_by(permissions=0xff).first()
             self.role = Role.query.filter_by(default=True).first()
+
+        if self.email is not None and self.avatar_hash is None:
+            self.avatar_hash = self.gravatar_hash()
+
+    @staticmethod
+    def generate_fake(count=100):
+        from sqlalchemy.exc import IntegrityError
+        from random import seed
+        import forgery_py
+
+        seed()
+        for i in range(count):
+            u = User(email=forgery_py.internet.email_address(),
+                    username=forgery_py.internet.user_name(True),
+                    password=forgery_py.lorem_ipsum.word(),
+                    confirmed=True,
+                    about_me=forgery_py.lorem_ipsum.sentence())
+            db.session.add(u)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+
+    def gravatar_hash(self):
+        return hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
+
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        url = 'https://secure.gravatar.com/avatar'
+        hash = self.avatar_hash or self.gravatar_hash()
+        return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
+                url=url, hash=hash, size=size, default=default, rating=rating
+                )
 
     @property
     def password(self):
@@ -179,6 +217,30 @@ login_manager.anonymous_user = AnonymousUser
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    @staticmethod
+    def generate_fake(count=100):
+        from random import seed, randint
+        import forgery_py
+
+        seed()
+        user_count = User.query.count()
+        for i in range(count):
+            u = User.query.offset(randint(0, user_count - 1)).first()
+            p = Post(body=forgery_py.lorem_ipsum.sentences(randint(1,3)),
+                    timestamp=forgery_py.date.date(True),
+                    author=u)
+            db.session.add(p)
+            db.session.commit()
+
+
 
 
 
