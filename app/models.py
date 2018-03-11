@@ -51,12 +51,35 @@ class Fishes(db.Model):
     order = db.Column(db.String(64))
     family = db.Column(db.String(64))
     genus = db.Column(db.String(64))
-    introduction = db.Column(db.Text)
+    introduction = db.Column(db.Text, nullable=True)
     feature = db.Column(db.Text)
+    foods = db.Column(db.Text)
+    reproduce = db.Column(db.Text)
+    growth = db.Column(db.Text)
     habit = db.Column(db.Text)
     distribution = db.Column(db.Text)
-    level = db.Column(db.Text)
+    commercial = db.Column(db.Text, nullable=True)
+    danger_reason = db.Column(db.Text, nullable=True)
+    domestication = db.Column(db.Text, nullable=True)
+    protection = db.Column(db.Text, nullable=True)
+    protection_sugession = db.Column(db.Text, nullable=True)
+    quantity = db.Column(db.Text, nullable=True)
+    level = db.Column(db.Text, nullable=True)
     pic_url = db.Column(db.Text)
+
+    @staticmethod
+    def add_record(record):
+        fish = Fishes(fishname=record.get('fishname'), latin_name=record.get('latin_name'),
+                other_names=record.get('other_names'), order=record.get('order'),
+                family=record.get('family'), genus=record.get('genus'), introduction=record.get('introduction'),
+                feature=record.get('feature'),foods=record.get('feature'),reproduce=record.get('reproduce'),
+                growth=record.get('growth'),habit=record.get('habit'),distribution=record.get('distribution'),
+                commercial=record.get('commercial'),danger_reason=record.get('danger_reason'),
+                domestication=record.get('domestication'),protection=record.get('protestion'),
+                protection_sugession=record.get('protection_sugession'),quantity=record.get('quantity'),
+                level=record.get('level'),pic_url=record.get('pic'))
+        db.session.add(fish)
+        db.session.commit()
 
     def to_frontend(self):
         return dict(fishname=self.fishname,
@@ -67,8 +90,17 @@ class Fishes(db.Model):
                     genus=self.genus,
                     introduction=self.introduction,
                     feature=self.feature,
+                    foods = self.foods,
+                    reproduce = self.reproduce,
+                    growth = self.reproduce,
                     habit=self.habit,
                     distribution=self.distribution,
+                    commercial = self.commercial,
+                    danger_reason = self.danger_reason,
+                    domestication = self.domestication,
+                    protection_sugession = self.protection_sugession,
+                    protection = self.protection,
+                    quantity = self.quantity,
                     level=self.level,
                     pic_url=self.pic_url,
                     )
@@ -89,6 +121,7 @@ class User(UserMixin, db.Model):
                                 secondary=exerciseTaken,
                                 backref=db.backref('users', lazy='dynamic'),
                                 lazy='dynamic')
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -224,6 +257,17 @@ class Post(db.Model):
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+
+    @staticmethod
+    def on_changed_body(target, value, oldvalue, initiator):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
+                'em', 'i', 'li', 'ol', 'pre', 'strong', 'ul',
+                'h1', 'h2', 'h3', 'p']
+        target.body_html = bleach.linkify(bleach.clean(
+            markdown(value, output_format='html'),
+            tags=allowed_tags, strip=True
+            ))
 
     @staticmethod
     def generate_fake(count=100):
@@ -240,6 +284,29 @@ class Post(db.Model):
             db.session.add(p)
             db.session.commit()
 
+db.event.listen(Post.body, 'set', Post.on_changed_body)
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    body_html = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    disabled = db.Column(db.Boolean)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
+    @staticmethod
+    def on_changed_body(target, value, oldvalue, initiator):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code', 'em', 'i',
+                'strong']
+        target.body_html = bleach.linkify(bleach.clean(
+            markdown(value, output_format='html'),
+            tags=allowed_tags, strip=True
+            ))
+
+db.event.listen(Comment.body, 'set', Comment.on_changed_body)
 
 
 

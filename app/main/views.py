@@ -2,9 +2,9 @@
 from flask import render_template, session, redirect, url_for, current_app, jsonify, flash, request
 from flask_login import login_required, current_user
 from .. import db
-from ..models import Fishes, User, Post, Permission
+from ..models import Fishes, User, Post, Permission, Comment
 from . import main
-from .forms import SearchForm, NewRecordForm, EditProfileForm, PostForm
+from .forms import SearchForm, NewRecordForm, EditProfileForm, PostForm, CommentForm
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -96,7 +96,7 @@ def new_record():
         return redirect('.user_profile')
     return render_template('add_record.html', form=form)
 
-@main.route('/bbs')
+@main.route('/bbs', methods=['GET', 'POST'])
 def bbs():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():
@@ -106,7 +106,6 @@ def bbs():
         db.session.commit()
         return redirect(url_for('main.bbs'))
     page = request.args.get('page', 1, type=int)
-    print 'page=', page
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
             page, per_page=current_app.config['POSTS_PER_PAGE'],
             error_out=False
@@ -139,3 +138,31 @@ def exercises():
 @main.route('/contact')
 def contact():
     return
+
+@main.route('/post/<int:id>', methods=['GET', 'POST'])
+def post(id):
+    post = Post.query.get_or_404(id)
+    post = Post.query.get_or_404(id)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(body=form.body.data,
+                post=post,
+                author=current_user._get_current_object())
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment has been published.')
+        return redirect(url_for('main.post', id=post.id, page=-1))
+    page = request.args.get('page', 1, type=int)
+    if page == -1:
+        page = (post.comments.count() - 1) // \
+                current_app.config['COMMENTS_PER_PAGE'] + 1
+    pagination = post.comments.order_by(Comment.timestamp.asc()).paginate(
+            page, per_page=current_app.config['COMMENTS_PER_PAGE'],
+            error_out=False
+            )
+    comments = pagination.items
+    return render_template('post.html', posts=[post], form=form,
+            comments=comments, pagination=pagination)
+
+    # return render_template('post.html', posts=[post])
+

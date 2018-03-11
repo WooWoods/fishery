@@ -9,6 +9,7 @@ class Config:
     FISHERY_MAIL_SENDER = 'Fishery Admin <fishery_admin@126.com>'
     FISHERY_ADMIN = os.environ.get('fishery_admin@126.com')
     POSTS_PER_PAGE = 10
+    COMMENTS_PER_PAGE = 10
 
     @staticmethod
     def init_app(app):

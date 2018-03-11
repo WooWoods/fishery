@@ -3,10 +3,10 @@
 {% block title %}Fishery - 搜索结果{% endblock %}
 
 {% block main %}
-<h2>胭脂鱼</h2>
+<h2>{{ fishdata.get('fishname') }}</h2>
 {% if current_user.is_administer %}
   <button type="button" class="btn btn-default btn-sm">
-    <a href="{{ url_for('main.edit-record', fishname=fishdata.get('fishname') }}">
+    <a href="{{ url_for('main.edit-record', fishname=fishdata.get('fishname')) }}">
       编辑
     </a>
   </button>
@@ -40,10 +40,7 @@
 		<span class="title">属</span>
 		<span class="content">{{ fishdata.get('genus', '') }}</span>
 	</li>
-	<li>
-		<span class="title">种</span>
-		<span class="content">{{ fishdata.get('species', '') }}</span>
-	</li>
+
 </div>
 
 <div class="record-catalog">
@@ -62,7 +59,7 @@
 					<a href="#2">生活习性</a>
 				</span>
 			</li>
-						<li class="level1">
+			<li class="level1">
 				<span class="index">3</span>
 				<span class="text">
 					<a href="#3">地理分布</a>
@@ -96,6 +93,7 @@
 </div>
 <div class="para">
 	{{ fishdata.get('feature', '') }}
+	<img src="{{ url_for('static', filename=fishdata.get('pic_url')) }}" height="200" width="400" />
 </div>
 
 <div class="anchor-list">
@@ -110,6 +108,39 @@
 </div>
 
 <div class="anchor-list">
+	<a name="2" class="lamma-anchor"></a>
+	<a name="食性" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">食性</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('foods', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="2" class="lamma-anchor"></a>
+	<a name="生殖" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">生殖</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('reproduce', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="2" class="lamma-anchor"></a>
+	<a name="生长" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">年龄和生长</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('growth', '') }}
+</div>
+
+<div class="anchor-list">
 	<a name="3" class="lamma-anchor"></a>
 	<a name="地理分布" class="lamma-anchor"></a>
 </div>
@@ -118,6 +149,28 @@
 </div>
 <div class="para">
 	{{ fishdata.get('distribution', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="3" class="lamma-anchor"></a>
+	<a name="经济意义" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">经济意义</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('commercial', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="3" class="lamma-anchor"></a>
+	<a name="经济意义" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">估计数量</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('quantity', '') }}
 </div>
 
 <div class="anchor-list">
@@ -132,6 +185,39 @@
 </div>
 
 <div class="anchor-list">
+	<a name="4" class="lamma-anchor"></a>
+	<a name="保护级别" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">致危原因</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('danger_reason', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="4" class="lamma-anchor"></a>
+	<a name="保护级别" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">现有保护措施</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('protection', '') }}
+</div>
+
+<div class="anchor-list">
+	<a name="4" class="lamma-anchor"></a>
+	<a name="保护级别" class="lamma-anchor"></a>
+</div>
+<div class="para-title-level2">
+	<h2 class="title-text">建议采取措施</h2>
+</div>
+<div class="para">
+	{{ fishdata.get('protection_sugession', '') }}
+</div>
+
+<div class="anchor-list">
 	<a name="5" class="lamma-anchor"></a>
 	<a name="人工养殖" class="lamma-anchor"></a>
 </div>
@@ -139,7 +225,7 @@
 	<h2 class="title-text">人工养殖</h2>
 </div>
 <div class="para">
-	{{ para }}
+	{{ fishdata.get('domestication', '') }}
 </div>
 {% endblock %}
 
