@@ -4,16 +4,16 @@
 
 {% block main %}
 <h2>{{ fishdata.get('fishname') }}</h2>
-{% if current_user.is_administer %}
+{% if current_user.is_administrator() %}
   <button type="button" class="btn btn-default btn-sm">
-    <a href="{{ url_for('main.edit-record', fishname=fishdata.get('fishname')) }}">
+    <a href="{{ url_for('main.edit_record', fishname=fishdata.get('fishname')) }}" style="color:white">
       编辑
     </a>
   </button>
 {% endif %}
-<p class="introduction">
+<!--p class="introduction">
 	{{ fishdata.get('introduction', '') }}
-</p>
+</p-->
 
 <div class="taxon">
 	<li>
@@ -22,7 +22,7 @@
 	</li>
 	<li>
 		<span class="title">拉丁学名</span>
-		<span class="content">{{ fishdata.get('latin_name', '') }}</span>
+        <span class="content"><em>{{ fishdata.get('latin_name', '') }}</em></span>
 	</li>
 	<li>
 		<span class="title">别称</span>
@@ -93,7 +93,9 @@
 </div>
 <div class="para">
 	{{ fishdata.get('feature', '') }}
+	{% if fishdata.get('pic_url', '') %}
 	<img src="{{ url_for('static', filename=fishdata.get('pic_url')) }}" height="200" width="400" />
+	{% endif %}
 </div>
 
 <div class="anchor-list">

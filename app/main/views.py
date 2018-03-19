@@ -2,14 +2,15 @@
 from flask import render_template, session, redirect, url_for, current_app, jsonify, flash, request
 from flask_login import login_required, current_user
 from .. import db
-from ..models import Fishes, User, Post, Permission, Comment
+from ..models import Fishes, User, Post, Permission, Comment, News
 from . import main
-from .forms import SearchForm, NewRecordForm, EditProfileForm, PostForm, CommentForm
+from .forms import SearchForm, NewRecordForm, EditProfileForm, PostForm, CommentForm, AddNewsForm
 
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
     form = SearchForm()
+    news = News.query.order_by(News.timestamp.asc()).all()
     if form.validate_on_submit():
         fishdata = Fishes.query.filter_by(fishname=form.fishname.data).first()
         if fishdata is None:
@@ -17,12 +18,29 @@ def index():
             return redirect(url_for('.index'))
             #return render_template('index_base.html', form=form)
         else:
-            session['found'] = True
+            # session['found'] = True
             fishdata_to_front = fishdata.to_frontend()
             return render_template('searched_record.html', form=form, fishdata=fishdata_to_front)
     #else:
     #    print form.errors
-    return render_template('index_base.html', form=form)
+    return render_template('index_base.html', form=form, news=news)
+
+@main.route('/record/<fishname>')
+def show_record(fishname):
+    form = SearchForm()
+    fishdata = Fishes.query.filter_by(fishname=fishname).first()
+    if fishdata is None:
+        return redirect('main.retrival')
+    else:
+        fishdata_to_front = fishdata.to_frontend()
+        return render_template('searched_record.html', form=form, fishdata=fishdata_to_front)
+
+
+
+@main.route('/retrival')
+def retrival():
+    form = SearchForm()
+    return render_template('jiansuobiao.html', form=form)
 
 @main.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
@@ -165,4 +183,14 @@ def post(id):
             comments=comments, pagination=pagination)
 
     # return render_template('post.html', posts=[post])
+
+@main.route('/add-news', methods=['GET', 'POST'])
+def report_news():
+    form = AddNewsForm()
+    if form.validate_on_submit():
+        news = News(body=form.body.data)
+        db.session.add(news)
+        return redirect(url_for('main.report_news'))
+    return render_template('report_news.html', form=form)
+
 

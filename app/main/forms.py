@@ -32,6 +32,10 @@ class PostForm(FlaskForm):
     body = TextAreaField("发布新帖", validators=[Required()])
     submit = SubmitField('Submit')
 
+class AddNewsForm(FlaskForm):
+    body = TextAreaField("发布新消息", validators=[Required()])
+    submit = SubmitField('Submit')
+
 class CommentForm(FlaskForm):
     body = StringField('Enter your comment', validators=[Required()])
     submit = SubmitField('Submit')

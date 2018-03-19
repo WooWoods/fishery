@@ -1,0 +1,13 @@
+{% extends "profile_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Fishery - News{% endblock %}
+
+{% block main %}
+<article id=108 class="post">
+        <div class="page-header">
+        <h1>News Report</h1>
+        </div>
+            {{ wtf.quick_form(form) }}
+</article>
+{% endblock %}

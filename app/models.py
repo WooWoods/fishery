@@ -72,7 +72,7 @@ class Fishes(db.Model):
         fish = Fishes(fishname=record.get('fishname'), latin_name=record.get('latin_name'),
                 other_names=record.get('other_names'), order=record.get('order'),
                 family=record.get('family'), genus=record.get('genus'), introduction=record.get('introduction'),
-                feature=record.get('feature'),foods=record.get('feature'),reproduce=record.get('reproduce'),
+                feature=record.get('feature'),foods=record.get('foods'),reproduce=record.get('reproduce'),
                 growth=record.get('growth'),habit=record.get('habit'),distribution=record.get('distribution'),
                 commercial=record.get('commercial'),danger_reason=record.get('danger_reason'),
                 domestication=record.get('domestication'),protection=record.get('protestion'),
@@ -196,6 +196,9 @@ class User(UserMixin, db.Model):
     def is_administrator(self):
         return self.can(Permission.ADMINISTER)
 
+    def is_teacher(self):
+        return self.can(0x0f)
+
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -309,6 +312,11 @@ class Comment(db.Model):
 db.event.listen(Comment.body, 'set', Comment.on_changed_body)
 
 
+class News(db.Model):
+    __tablename__ = 'news'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
 
 

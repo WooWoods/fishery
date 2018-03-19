@@ -62,8 +62,9 @@
                <div class="collapse navbar-collapse" id="main-menu">
                   {% block navmenu -%}
                	<ul class="menu">
-        					<li class="nav-current" role="presentation"><a href="{{ url_for('main.index') }}">首页</a></li>
-        					<li role="presentation"><a href="{{ url_for('main.bbs') }}">论坛</a></li>
+                  <li role="presentation"><a href="{{ url_for('main.index') }}">首页</a></li>
+        					<li role="presentation"><a href="{{ url_for('main.retrival') }}">检索表</a></li>
+        					<li role="presentation"><a href="{{ url_for('main.bbs') }}">留言板</a></li>
         					<li role="presentation">
         					  <a>课堂</a>
         					  <div class="dropdown">
@@ -97,6 +98,11 @@
         					      		<a href="{{ url_for('main.new_record') }}">添加新记录</a>
         					      	</li>
         					      {% endif %}
+                        {% if current_user.is_administrator() or current_user.is_teacher() %}
+                          <li role="presentation">
+                            <a href="{{ url_for('main.report_news') }}">发布新消息</a>
+                          </li>
+                        {% endif %}
         					      <li role="presentation">
         					        <a href="{{ url_for('auth.logout') }}">退出</a>
         					      </li>
@@ -179,6 +185,18 @@
                    {{ message }}
                  </div>
                  {% endfor %}
+
+                <ul>
+                  {% for new in news %}
+                    <li>
+                      <div class="post-content">
+                        <div class="post-date">{{ moment(new.timestamp).fromNow() }}</div>
+                        <div class="post-body">{{ new.body }}</div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+
 		         <!--div>
 		           <p>This a a post</p>
 		         </div-->
