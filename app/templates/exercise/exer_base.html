@@ -1,0 +1,34 @@
+{% extends "index_base.html" %}
+
+{% block title %}Fishery - 习题{% endblock %}
+
+{% block aside %}
+<aside class="col-md-4 sidebar">
+    <div class="widget">
+	    <div class="content community">
+	    	<p class="side-bar">
+	    		<a href="{{ url_for('main.exercise1') }}">第一章</a>
+	    	</p>
+	    	<p class="side-bar">
+	    		<a href="{{ url_for('auth.change_password') }}">第二章</a>
+	    	</p>
+	    	<p class="side-bar">
+	    		<a href="{{ url_for('auth.change_password') }}">第三章</a>
+	    	</p>
+	    	<p class="side-bar">
+	    		<a href="{{ url_for('main.user_posts', username=current_user.username) }}">第四章</a>
+	    	</p>
+	    	<p class="side-bar">
+	    		<a href="">第五章</a>
+	    	</p>
+	    	<p class="side-bar">
+	    		<a href="">第六章</a>
+	    	</p>
+            <p class="side-bar">
+                <a href="{{ url_for('main.new_record') }}">第七章</a>
+            </p>
+	    </div>
+	</div>
+</aside>
+{% endblock %}
+

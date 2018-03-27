@@ -10,6 +10,11 @@
       编辑
     </a>
   </button>
+    <button type="button" class="btn btn-default btn-sm">
+    <a href="{{ url_for('main.edit_record', fishname=fishdata.get('fishname')) }}" style="color:white">
+      删除
+    </a>
+  </button>
 {% endif %}
 <!--p class="introduction">
 	{{ fishdata.get('introduction', '') }}

@@ -70,10 +70,10 @@
         					  <div class="dropdown">
 				             <ul class="dropdown-menu">
 				               <li role="presentation">
-				                 <a href="#">视频</a>
+				                 <a href="{{ url_for('main.lecture') }}">视频</a>
 				               </li>
 				               <li role="presentation">
-				                 <a href="{{ url_for('main.exercises') }}">题库</a>
+				                 <a href="{{ url_for('main.exercise1') }}">题库</a>
 				               </li>
 				             </ul>
 				           </div>
@@ -86,9 +86,6 @@
         					    <ul class="dropdown-menu">
         					      <li role="presentation">
         					        <a href="{{ url_for('main.user', username=current_user.username) }}">我的主页</a>
-        					      </li>
-        					      <li role="presentation">
-        					        <a href="#">我的小队</a>
         					      </li>
         					      <li role="presentation">
         					        <a href="#">我的习题</a>

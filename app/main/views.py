@@ -68,7 +68,7 @@ def edit_record(fishname):
                            order = form.order.data,
                            family = form.family.data,
                            genus = form.genus.data,
-                           introdut = form.introdution.data,
+                           introdution = form.introdution.data,
                            feature = form.body_feature.data,
                            habit = form.life_habit.data,
                            distribution = form.distribution.data,
@@ -77,19 +77,19 @@ def edit_record(fishname):
         db.session.add(curr_fish)
         db.commit()
         flash('Record update successfully.')
-        return render_template('new_record.html', form=form)
+        return render_template('add_record.html', form=form)
     form.fishname.data = fishdata.fishname
     form.latin_name.data = fishdata.latin_name
     form.other_names.data = fishdata.other_names
     form.order.data = fishdata.order
     form.family.data = fishdata.family
     form.genus.data = fishdata.genus
-    form.introdution.data = fishdata.introdution
+    # form.introdution.data = fishdata.introdution
     form.body_feature.data = fishdata.feature
     form.life_habit.data = fishdata.habit
     form.distribution.data = fishdata.distribution
     form.level.data = fishdata.level
-    return render_template('new_record.html', form=form)
+    return render_template('add_record.html', form=form)
 
 
 @main.route('/new-record', methods=['GET', 'POST'])
@@ -113,6 +113,16 @@ def new_record():
         flash('New record added successfully')
         return redirect('.user_profile')
     return render_template('add_record.html', form=form)
+
+@main.route('/rm-record/<fishname>', methods=['GET', 'POST'])
+@login_required
+def new_record(fishname):
+    form = SearchForm()
+    fishdata = Fishes.query.filter_by(fishname=fishname).first()
+    if fishdata:
+        db.session.delete(fishdata)
+    return render_template('index_base.html', form=form)
+
 
 @main.route('/bbs', methods=['GET', 'POST'])
 def bbs():
@@ -149,9 +159,14 @@ def about():
     form = SearchForm()
     return render_template('aboutus.html', form=form)
 
-@main.route('/exercises')
-def exercises():
-    return
+@main.route('/exercise1')
+def exercise1():
+    return render_template('exercise/exercise1.html')
+
+@main.route('/lecture')
+def lecture():
+    form = SearchForm()
+    return render_template('video.html', form=form)
 
 @main.route('/contact')
 def contact():

@@ -1,0 +1,22 @@
+{% extends "index_base.html" %}
+{% block title %}Fishery - 课程{% endblock %}
+
+{% block main %}
+<div>
+<div style="display: inline-block; width: 50%; margin: none; padding: none;">
+	<video width="300" height="240" controls>
+		<source src="{{ url_for('static', filename='video/yuleixue.mp4') }}" type="video/mp4">
+		您的浏览器不支持Video标签。
+	</video>
+	<p>鱼类学1</p>
+</div>
+
+<div style="display: inline-block; width: 50%; margin: none; padding: none;">
+	<video width="300" height="240" controls>
+		<source src="{{ url_for('static', filename='video/yuleixue2.mp4') }}" type="video/mp4">
+		您的浏览器不支持Video标签。
+	</video>
+	<p>鱼类学2</p>
+</div>
+</div>
+{% endblock %}
